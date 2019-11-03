@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="工具,插件,效率," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一些比较实用的工具，插件  vim自动配置 vim 123456git clone https:&#x2F;&#x2F;github.com&#x2F;amix&#x2F;vimrc.git ~&#x2F;.vim_runtimesh ~&#x2F;.vim_runtime&#x2F;install_awesome_vimrc.sh# updatecd ~&#x2F;.vim_runtimegit pull --rebase    oh-my-zsh安装 zsh 12sud">
+<meta name="keywords" content="工具,插件,效率">
+<meta property="og:type" content="article">
+<meta property="og:title" content="工作流">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;06&#x2F;17&#x2F;%E5%B7%A5%E4%BD%9C%E6%B5%81&#x2F;index.html">
+<meta property="og:site_name" content="Karl&#39;s Blog">
+<meta property="og:description" content="一些比较实用的工具，插件  vim自动配置 vim 123456git clone https:&#x2F;&#x2F;github.com&#x2F;amix&#x2F;vimrc.git ~&#x2F;.vim_runtimesh ~&#x2F;.vim_runtime&#x2F;install_awesome_vimrc.sh# updatecd ~&#x2F;.vim_runtimegit pull --rebase    oh-my-zsh安装 zsh 12sud">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-11-03T07:09:15.442Z">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/06/17/工作流/"/>
+
+
+
+
+
+  <title>工作流 | Karl's Blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ee4db5302c30a00e598b6d026d3c22ec";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Karl's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/17/%E5%B7%A5%E4%BD%9C%E6%B5%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Karl">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://blog.51doubiz.com/images/photos.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Karl's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">工作流</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-17T11:43:08+08:00">
+                2019-06-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%9A%8F%E8%AE%B0/" itemprop="url" rel="index">
+                    <span itemprop="name">随记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>一些比较实用的工具，插件</p>
+</blockquote>
+<h5 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h5><p>自动配置 vim</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/amix/vimrc.git ~/.vim_runtime</span><br><span class="line">sh ~/.vim_runtime/install_awesome_vimrc.sh</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> update</span></span><br><span class="line">cd ~/.vim_runtime</span><br><span class="line">git pull --rebase</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="oh-my-zsh"><a href="#oh-my-zsh" class="headerlink" title="oh-my-zsh"></a>oh-my-zsh</h5><p>安装 zsh</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install zsh</span><br><span class="line">sudo apt install zsh</span><br></pre></td></tr></table></figure>
+
+<p>wget 自动安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh</span><br></pre></td></tr></table></figure>
+
+<p>执行完毕后，zhs 基本已经配置完成，只要切换到 zsh 模式就行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chsh -s /usr/bin/zsh</span><br></pre></td></tr></table></figure>
+
+
+
+<p> 自己的配置 <code>.zshrc</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">plugins=(</span><br><span class="line">   git</span><br><span class="line">   catimg</span><br><span class="line">   wd</span><br><span class="line">   history</span><br><span class="line">   zsh-history-substring-search</span><br><span class="line">   zsh-autosuggestions</span><br><span class="line"> )</span><br><span class="line"> </span><br><span class="line"> setopt AUTOLIST</span><br><span class="line"> setopt AUTOMENU</span><br><span class="line"> </span><br><span class="line"> // $PATH 你自己本地文件的路径</span><br><span class="line"> source  $PATH/incr-0.2.zsh</span><br><span class="line"> </span><br><span class="line"> alias gst=&quot;git status&quot;</span><br><span class="line"> alias gc=&quot;git checkout&quot;</span><br><span class="line"> alias gam=&quot;git add . &amp;&amp; git commit -m&quot;</span><br><span class="line"> alias gpull=&quot;git pull origin&quot;</span><br><span class="line"> alias gpush=&quot;git push origin&quot;</span><br><span class="line"> alias gfetch=&quot;git fetch origin&quot;</span><br><span class="line"> alias gdf=&quot;git diff&quot;</span><br><span class="line"> alias gl=&quot;git log --graph --pretty=format:&apos;%C(yellow)%h%Creset %C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&apos; --abbrev-commit --date=short --all&quot;</span><br><span class="line"> alias gm=&quot;git merge&quot;</span><br><span class="line"> </span><br><span class="line"> alias subl=&quot;LD_PRELOAD=/opt/sublime_text/libsublime-imfix.so subl&quot;</span><br><span class="line"> </span><br><span class="line"> alias tflog=&quot;tail -f storage/logs/laravel.log | grep&quot;</span><br><span class="line"> </span><br><span class="line"> alias szsh=&quot;source ~/.zshrc&quot;</span><br><span class="line"> alias vzsh=&quot;vim ~/.zshrc&quot;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>配置有这个 <a href="http://mimosa-pudica.net/zsh-incremental.html" target="_blank" rel="noopener">incr-0.2.zsh</a> 补全插件， 它能让你在zsh 模式下全自动补全指令或目录</p>
+</blockquote>
+<h5 id="lantern"><a href="#lantern" class="headerlink" title="lantern"></a>lantern</h5><p>下载网址 <a href="https://github.com/getlantern/lantern" target="_blank" rel="noopener">lantern</a></p>
+<h5 id="shadowsocks"><a href="#shadowsocks" class="headerlink" title="shadowsocks"></a>shadowsocks</h5><p>windows 版本下载地址: <a href="https://github.com/shadowsocks/shadowsocks-windows/releases" target="_blank" rel="noopener">https://github.com/shadowsocks/shadowsocks-windows/releases</a></p>
+<p>Linux 版本:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pip install shadowsocks</span><br><span class="line">apt-get install shadowsocks-libev</span><br><span class="line">cpan Net:Shadowsocks</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="sublime-Text-3"><a href="#sublime-Text-3" class="headerlink" title="sublime Text 3"></a>sublime Text 3</h5><p>安装 <code>Package Control</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import urllib.request,os,hashlib; h = '6f4c264a24d933ce70df5dedcf1dcaee' + 'ebe013ee18cced0ef93d5f746d80ef60'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)</span><br></pre></td></tr></table></figure>
+
+<p><strong>ctrl + `</strong>  呼出命令框，复制上面的代码，回车 ，等待安装成功</p>
+<p>插件</p>
+<p><code>ConvertToUTF8</code>    </p>
+<blockquote>
+<p>支持 GBK, BIG5, EUC-KR, EUC-JP, Shift_JIS 等编码的插件</p>
+</blockquote>
+<p><code>Bracket Highlighter</code> </p>
+<blockquote>
+<p>用于匹配括号，引号和html标签。对于很长的代码很有用。安装好之后，不需要设置插件会自动生效</p>
+</blockquote>
+<p><code>DocBlockr</code> </p>
+<blockquote>
+<p>可以自动生成PHPDoc风格的注释。它支持的语言有Javascript, PHP, ActionScript, CoffeeScript, Java, Objective C, C, C++</p>
+</blockquote>
+<p><code>Emmet</code>      </p>
+<blockquote>
+<p>快速生成HTML代码段的插件</p>
+</blockquote>
+<p><code>SideBar Enhancements</code>  </p>
+<blockquote>
+<p>改进了侧边栏，增加了许多功能</p>
+</blockquote>
+<p><code>All Autocomplete</code></p>
+<blockquote>
+<p>t默认的自动完成只关注当前文件的单词。这个插件扩展了其自动完成的单词列表到所有打开的文件（请注意，这是所有<strong>打开</strong>的文件）</p>
+</blockquote>
+<p><code>Git</code></p>
+<p><code>GitGutter</code></p>
+<blockquote>
+<p>会在你最后一次提交GIt后显示出有哪些行是被改动过的</p>
+</blockquote>
+<p><code>AutoFileName</code></p>
+<blockquote>
+<p>自动完成文件名的输入</p>
+</blockquote>
+<p><strong>输入中文</strong></p>
+<p>下载需要的文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/lyfeyaj/sublime-text-imfix.git</span><br></pre></td></tr></table></figure>
+
+<p>将 <code>subl</code> 移动到 <code>/usr/bin/</code> ，并且将 <code>sublime-imfix.so</code> 移动到 <code>/opt/sublime_text/</code>（sublime的安装目录）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ~/sublime-text-imfix</span><br><span class="line">sudo cp ./lib/libsublime-imfix.so /opt/sublime_text/</span><br><span class="line">sudo cp ./src/subl /usr/bin/</span><br></pre></td></tr></table></figure>
+
+<p>启动sublime，如果成功启动的话，应该就可以输入中文了。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LD_PRELOAD=./libsublime-imfix.so subl</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>解决中英文上下错位</strong></p>
+<blockquote>
+<p>Yahei Consolas Hybrid 是一种合成字体，是由微软雅黑的中文字体和 Consolas 的英文字体合成的，Consolas 字体是微软专为程序员开发的一种字体，但没有中文支持，所以 Yahei Consolas Hybrid 这种字体特别适合中英文的编程开发，代码编写</p>
+</blockquote>
+<p>可以使用git库快速安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/cypro666/yahei.consolas-font.git</span><br><span class="line">cd yahei.consolas-font</span><br><span class="line">./install.sh</span><br></pre></td></tr></table></figure>
+
+<p>当git库不可用, 可以直接使用命令安装字体</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir /usr/share/fonts/consolas</span><br><span class="line">sudo cp ./*.ttf /usr/share/fonts/consolas</span><br><span class="line">cd /usr/share/fonts/consolas</span><br><span class="line">sudo chmod 644 *.ttf</span><br><span class="line">sudo mkfontdir</span><br><span class="line">sudo mkfontscale</span><br><span class="line">sudo fc-cache -fv</span><br><span class="line">sudo fc-list|grep "YaHei Consolas Hybrid"</span><br></pre></td></tr></table></figure>
+
+<p>之后, 在<code>sublime text 3</code> 的配置文件中添加</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">"font_face":"Yahei Consolas Hybrid"</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="VS-Code"><a href="#VS-Code" class="headerlink" title="VS Code"></a>VS Code</h5><p>下载 <a href="https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync" target="_blank" rel="noopener">Setting Sync</a> 统一设置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GitHub Token: 6a006c24ea62*******d357ab676c88f</span><br><span class="line">GitHub Gist: a9a6694d86********aacd38ba4133b</span><br><span class="line">GitHub Gist Type: Secret</span><br></pre></td></tr></table></figure>
+
+
+
+<p>常用扩展</p>
+<ul>
+<li>Better Align</li>
+<li>Bootstrap 4, Font awesome 4, Font Awesome 5 Free &amp; Pro snippets</li>
+<li>Bracket Pair Colorizer</li>
+<li>Chinese (Simplified) Language Pack for Visual Studio Code</li>
+<li>Document This</li>
+<li>DotENV</li>
+<li>HTML CSS Support</li>
+<li>HTML Snippets</li>
+<li>IntelliSense for CSS, SCSS class names in HTML, Slim and SCSS</li>
+<li>laravel-5-snippets</li>
+<li>Laravel Blade Snippets</li>
+<li>Laravel goto view</li>
+<li>PHP DocBlocker</li>
+<li>PHP Intelephense</li>
+<li>PHP IntelliSense</li>
+<li>SQL Server (mssql)</li>
+<li>vscode-icons</li>
+</ul>
+<h5 id="github-API"><a href="#github-API" class="headerlink" title="github API"></a>github API</h5><p><strong>yii</strong> token: fce4f41d8<strong><strong><strong><strong>**</strong></strong></strong></strong>43246ddf </p>
+<h5 id="小孩便签"><a href="#小孩便签" class="headerlink" title="小孩便签"></a>小孩便签</h5><blockquote>
+<p>该软件完全模仿了日常生活中的纸质便签，所有操作简单快捷，一目了然。您可以将它作为工作提醒、记录您日常生活琐事等等。</p>
+</blockquote>
+<p><a href="http://www.notesmaker.com/call.html" target="_blank" rel="noopener">下载地址</a></p>
+<h5 id="Capslock"><a href="#Capslock" class="headerlink" title="Capslock+"></a>Capslock+</h5><blockquote>
+<p>Capslock+是一个加强 Capslock 键的功能，以提高效率的工具。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Capslock+E / D / S / F（上 / 下 / 左 / 右）</span><br><span class="line">Capslock+I / K / J / L（上 / 下 / 左 / 右选中文字）</span><br><span class="line">Capslock+w / r（向左 / 右删除文字）</span><br><span class="line">Capslock+A / G（光标向左 / 右跳一个单词，对英文、代码特别有用）</span><br><span class="line">Capslock+; / P（移动光标至行首 / 行末）</span><br><span class="line">Capslock+U / O（选中光标至行首 / 行末文字）</span><br><span class="line">Capslock+Backspace（删除光标所在行所有文字）</span><br><span class="line">Capslock+Enter（无论光标是否在行末都能新起一个换行而不截断原句子）</span><br><span class="line">....</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://cjkis.me/capslock+/" target="_blank" rel="noopener">下载地址</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Karl 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag"># 工具</a>
+          
+            <a href="/tags/%E6%8F%92%E4%BB%B6/" rel="tag"># 插件</a>
+          
+            <a href="/tags/%E6%95%88%E7%8E%87/" rel="tag"># 效率</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/18/YiiChina%E7%BD%91%E7%AB%99%E6%AF%8F%E5%A4%A9%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E8%84%9A%E6%9C%AC%EF%BC%88Python%EF%BC%89/" rel="next" title="YiiChina网站每天自动签到脚本（Python）">
+                <i class="fa fa-chevron-left"></i> YiiChina网站每天自动签到脚本（Python）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/08/%E7%A8%8B%E5%BA%8F%E4%B9%8B-canvas-%E5%B1%82%E7%BA%A7%E9%97%AE%E9%A2%98/" rel="prev" title="【已解决】小程序之 canvas 层级问题">
+                【已解决】小程序之 canvas 层级问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://blog.51doubiz.com/images/photos.jpg"
+                alt="Karl" />
+            
+              <p class="site-author-name" itemprop="name">Karl</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/zhengkx" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="zhengkx33@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#vim"><span class="nav-number">1.</span> <span class="nav-text">vim</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#oh-my-zsh"><span class="nav-number">2.</span> <span class="nav-text">oh-my-zsh</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#lantern"><span class="nav-number">3.</span> <span class="nav-text">lantern</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#shadowsocks"><span class="nav-number">4.</span> <span class="nav-text">shadowsocks</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#sublime-Text-3"><span class="nav-number">5.</span> <span class="nav-text">sublime Text 3</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#VS-Code"><span class="nav-number">6.</span> <span class="nav-text">VS Code</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#github-API"><span class="nav-number">7.</span> <span class="nav-text">github API</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#小孩便签"><span class="nav-number">8.</span> <span class="nav-text">小孩便签</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Capslock"><span class="nav-number">9.</span> <span class="nav-text">Capslock+</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Karl</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

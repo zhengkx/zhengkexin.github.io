@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="PHP,微信公众号," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="完整代码地址： 微信公众号开发之客服消息 一、接入微信公众号平台 *从后台得到 appID 、appsecret， 以及自己填写的 token  *  通过微信服务器的验证  开发者提交信息后，微信服务器将发送 GET 请求到填写的服务器地址 URL 上，会携带参数 signature、 timestamp、 nonce、 echostr  根据开发文档给的校验方式， 校验是否由微信服务器发送的请">
+<meta name="keywords" content="PHP,微信公众号">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信公众号开发之客服消息">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;04&#x2F;19&#x2F;%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E5%BC%80%E5%8F%91%E4%B9%8B%E5%AE%A2%E6%9C%8D%E6%B6%88%E6%81%AF&#x2F;index.html">
+<meta property="og:site_name" content="Karl&#39;s Blog">
+<meta property="og:description" content="完整代码地址： 微信公众号开发之客服消息 一、接入微信公众号平台 *从后台得到 appID 、appsecret， 以及自己填写的 token  *  通过微信服务器的验证  开发者提交信息后，微信服务器将发送 GET 请求到填写的服务器地址 URL 上，会携带参数 signature、 timestamp、 nonce、 echostr  根据开发文档给的校验方式， 校验是否由微信服务器发送的请">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-11-03T07:09:15.442Z">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/04/19/微信公众号开发之客服消息/"/>
+
+
+
+
+
+  <title>微信公众号开发之客服消息 | Karl's Blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ee4db5302c30a00e598b6d026d3c22ec";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Karl's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/19/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E5%BC%80%E5%8F%91%E4%B9%8B%E5%AE%A2%E6%9C%8D%E6%B6%88%E6%81%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Karl">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://blog.51doubiz.com/images/photos.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Karl's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">微信公众号开发之客服消息</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-19T15:54:35+08:00">
+                2019-04-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/PHP/" itemprop="url" rel="index">
+                    <span itemprop="name">PHP</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>完整代码地址： <a href="https://github.com/zhengkx/weChat-development" target="_blank" rel="noopener">微信公众号开发之客服消息</a></p>
+<h3 id="一、接入微信公众号平台"><a href="#一、接入微信公众号平台" class="headerlink" title="一、接入微信公众号平台"></a>一、接入微信公众号平台</h3><ul>
+<li><p>*<em>从后台得到 <code>appID</code> 、<code>appsecret</code>， 以及自己填写的 <code>token</code>  *</em></p>
+</li>
+<li><p><strong>通过微信服务器的验证</strong></p>
+<blockquote>
+<p>开发者提交信息后，微信服务器将发送 <code>GET</code> 请求到填写的服务器地址 <code>URL</code> 上，会携带参数 <code>signature</code>、 <code>timestamp</code>、 <code>nonce</code>、 <code>echostr</code></p>
+</blockquote>
+<p>根据开发文档给的校验方式， 校验是否由微信服务器发送的请求，确认之后发送 <code>echostr</code> 参数，则接入成功，代码如下：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line">$wechat = <span class="keyword">new</span> wechatCallBack();</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>($_GET[<span class="string">'echostr'</span>])) &#123;</span><br><span class="line">    $wechat-&gt;checkSignature();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">wechatCallBack</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> $appid  = <span class="string">'wx35*****48137'</span>;</span><br><span class="line">    <span class="keyword">public</span> $sercet = <span class="string">'dd227*******aefaf4'</span>;</span><br><span class="line">    <span class="keyword">public</span> $token  = <span class="string">'token'</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 检验签名</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">checkSignature</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">// 获得参数 signature nonce token timestamp echostr</span></span><br><span class="line">        $nonce     = $_GET[<span class="string">'nonce'</span>];</span><br><span class="line">        $timestamp = $_GET[<span class="string">'timestamp'</span>];</span><br><span class="line">        $echostr   = $_GET[<span class="string">'echostr'</span>];</span><br><span class="line">        $signature = $_GET[<span class="string">'signature'</span>];</span><br><span class="line"></span><br><span class="line">        $array = <span class="keyword">array</span>();</span><br><span class="line"></span><br><span class="line">        $array = <span class="keyword">array</span>($nonce, $timestamp, <span class="keyword">$this</span>-&gt;token);</span><br><span class="line"></span><br><span class="line">        sort($array);</span><br><span class="line"></span><br><span class="line">        $str = sha1(implode($array));</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> ($str == $signature) &#123;</span><br><span class="line">            <span class="keyword">echo</span>  $echostr;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">exit</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h3 id="二、获取-access-token"><a href="#二、获取-access-token" class="headerlink" title="二、获取 access_token"></a>二、获取 <code>access_token</code></h3><blockquote>
+<p><code>access_token</code> 是公众号的全局唯一接口调用凭据，公众号调用各接口时都需使用 <code>access_token</code> 。开发者需要进行妥善保存。<code>access_token</code> 的存储至少要保留512个字符空间。<code>access_token</code> 的有效期目前为2个小时，需定时刷新，重复获取将导致上次获取的 <code>access_token</code> 失效。</p>
+</blockquote>
+<p>代码如下：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getAccessToken</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">isset</span>($_SESSION[<span class="string">'access_token'</span>]) &amp;&amp; time() &lt; $_SESSION[<span class="string">'expires_time'</span>]) &#123;</span><br><span class="line">        <span class="keyword">return</span> $_SESSION[<span class="string">'access_token'</span>];</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        $url = <span class="string">"https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&amp;appid=$this-&gt;appid&amp;secret=$this-&gt;sercet"</span>;</span><br><span class="line"></span><br><span class="line">        $res = <span class="keyword">$this</span>-&gt;getHttp($url);</span><br><span class="line"></span><br><span class="line">        $resArr = json_decode($res, <span class="keyword">true</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">isset</span>($resArr[<span class="string">'access_token'</span>])) &#123;</span><br><span class="line">            $_SESSION[<span class="string">'access_token'</span>] = $resArr[<span class="string">'access_token'</span>];</span><br><span class="line">            $_SESSION[<span class="string">'expires_time'</span>] = time() + $resArr[<span class="string">'expires_in'</span>];</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> $resArr[<span class="string">'access_token'</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="三、对接客服消息"><a href="#三、对接客服消息" class="headerlink" title="三、对接客服消息"></a>三、对接客服消息</h3><p>有了上面的 <code>access_token</code> ，接下来就可以对接 <strong>客服消息</strong></p>
+<blockquote>
+<p>当用户和公众号产生特定动作的交互时，微信将会把消息数据推送给开发者，开发者可以在一段时间内（目前修改为48小时）调用客服接口，通过 POST 一个 JSON 数据包来发送消息给普通用户。此接口主要用于客服等有人工消息处理环节的功能，方便开发者为用户提供更加优质的服务。</p>
+</blockquote>
+<h4 id="1-客服帐号管理"><a href="#1-客服帐号管理" class="headerlink" title="1. 客服帐号管理"></a>1. 客服帐号管理</h4><p><strong>添加客服帐号</strong></p>
+<p><strong>修改客服帐号</strong></p>
+<p><strong>删除客服账号</strong></p>
+<p><strong>设置客服账号的头像</strong></p>
+<p><strong>获取所有客服账号</strong></p>
+<p>以上接口，可能测试号没有权限操作，一直返回以下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;errcode&quot;:65400,&quot;errmsg&quot;:&quot;please enable new custom service, or wait for a while if you have enabled hint: [g7c2tA05131503]&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>查了好久，没有找到为什么，那就归到官方不开放吧，等以后搞到个认证过的公众号再来补充了。</p>
+<h4 id="2-客服发送接口"><a href="#2-客服发送接口" class="headerlink" title="2. 客服发送接口"></a>2. 客服发送接口</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 发送客服消息</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">sendCustomerMsg</span><span class="params">($obj)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $accessToken = <span class="keyword">$this</span>-&gt;getAccessToken();</span><br><span class="line"></span><br><span class="line">        $url = <span class="string">"https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=$accessToken"</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 不指定某个客服回复</span></span><br><span class="line">        $postData = <span class="keyword">array</span>(</span><br><span class="line">            <span class="string">'touser'</span>  =&gt; <span class="string">"$obj-&gt;FromUserName"</span>,</span><br><span class="line">            <span class="string">'msgtype'</span> =&gt; <span class="string">'text'</span>,</span><br><span class="line">            <span class="string">'text'</span>    =&gt; <span class="keyword">array</span> (</span><br><span class="line">                <span class="string">'content'</span> =&gt; <span class="string">'Hello a'</span>,</span><br><span class="line">            )</span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 指定某个客服回复</span></span><br><span class="line">        <span class="comment">// $postData = array(</span></span><br><span class="line">        <span class="comment">//     'touser'  =&gt; "$obj-&gt;FromUserName",</span></span><br><span class="line">        <span class="comment">//     'msgtype' =&gt; 'text',</span></span><br><span class="line">        <span class="comment">//     'customservice' =&gt; array(</span></span><br><span class="line">        <span class="comment">//         "kf_account" =&gt; "test1@kftest"</span></span><br><span class="line">        <span class="comment">//     ),</span></span><br><span class="line">        <span class="comment">//     'text'    =&gt; array(</span></span><br><span class="line">        <span class="comment">//         'content' =&gt; 'Hello a',</span></span><br><span class="line">        <span class="comment">//     )</span></span><br><span class="line">        <span class="comment">// );</span></span><br><span class="line"></span><br><span class="line">        $res = <span class="keyword">$this</span>-&gt;postHttp($url, json_encode($postData));</span><br><span class="line"></span><br><span class="line">        $resArr = json_decode($res, <span class="keyword">true</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">isset</span>($resArr[<span class="string">'errcode'</span>]) &amp;&amp; $resArr[<span class="string">'errcode'</span>] == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;logger(<span class="string">"\r\n"</span> . <span class="string">'发送成功'</span>);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">$this</span>-&gt;logger(<span class="string">"\r\n"</span> . $res);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>我这边是由一个自定义菜单 <code>在线客服</code> 按钮触发客服接口，你也可以自己设定其他事件来触发，具体如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1、用户发送信息</span><br><span class="line">2、点击自定义菜单（仅有点击推事件、扫码推事件、扫码推事件且弹出“消息接收中”提示框这3种菜单类型是会触发客服接口的）</span><br><span class="line">3、关注公众号</span><br><span class="line">4、扫描二维码</span><br><span class="line">5、支付成功</span><br><span class="line">6、用户维权</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-将消息转发到客服"><a href="#3-将消息转发到客服" class="headerlink" title="3. 将消息转发到客服"></a>3. 将消息转发到客服</h4><blockquote>
+<p>如果公众号处于开发模式，普通微信用户向公众号发消息时，微信服务器会先将消息POST到开发者填写的url上，如果希望将消息转发到客服系统，则需要开发者在响应包中返回MsgType为transfer_customer_service的消息，微信服务器收到响应后会把当次发送的消息转发至客服系统。</p>
+</blockquote>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 将消息转发到客服</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> void</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zhengkexin</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@created</span> 2019-04-19 17:02:49</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">forwardCustomerService</span><span class="params">($obj)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 不指定转发</span></span><br><span class="line">    $tmpXml = <span class="string">'&lt;xml&gt;</span></span><br><span class="line"><span class="string">                &lt;ToUserName&gt;&lt;![CDATA[%s]]&gt;&lt;/ToUserName&gt;</span></span><br><span class="line"><span class="string">                &lt;FromUserName&gt;&lt;![CDATA[%s]]&gt;&lt;/FromUserName&gt;</span></span><br><span class="line"><span class="string">                &lt;CreateTime&gt;%s&lt;/CreateTime&gt;</span></span><br><span class="line"><span class="string">                &lt;MsgType&gt;&lt;![CDATA[transfer_customer_service]]&gt;&lt;/MsgType&gt;</span></span><br><span class="line"><span class="string">            &lt;/xml&gt;'</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 指定转发到某客服</span></span><br><span class="line">    $tmpXml1 = <span class="string">'&lt;xml&gt;</span></span><br><span class="line"><span class="string">                &lt;ToUserName&gt;&lt;![CDATA[%s]]&gt;&lt;/ToUserName&gt;</span></span><br><span class="line"><span class="string">                &lt;FromUserName&gt;&lt;![CDATA[%s]]&gt;&lt;/FromUserName&gt;</span></span><br><span class="line"><span class="string">                &lt;CreateTime&gt;%s&lt;/CreateTime&gt;</span></span><br><span class="line"><span class="string">                &lt;MsgType&gt;&lt;![CDATA[transfer_customer_service]]&gt;&lt;/MsgType&gt;</span></span><br><span class="line"><span class="string">                &lt;TransInfo&gt;</span></span><br><span class="line"><span class="string">                    &lt;KfAccount&gt;&lt;![CDATA[test1@test]]&gt;&lt;/KfAccount&gt;</span></span><br><span class="line"><span class="string">                &lt;/TransInfo&gt;</span></span><br><span class="line"><span class="string">            &lt;/xml&gt;'</span>;</span><br><span class="line"></span><br><span class="line">    $resultXml = sprintf($tmpXml, $obj-&gt;FromUserName, $obj-&gt;ToUserName, time());</span><br><span class="line"></span><br><span class="line">    <span class="keyword">echo</span> $resultXml;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="四、注意"><a href="#四、注意" class="headerlink" title="四、注意"></a>四、注意</h3><blockquote>
+<p>网上很多教程都是用 <code>$GLOBALS[&quot;HTTP_RAW_POST_DATA&quot;]</code>  来接收微信服务器发来的消息，但可能有一些人说没有接收到信息。</p>
+<p>在 <a href="https://www.php.net/manual/zh/reserved.variables.httprawpostdata.php" target="_blank" rel="noopener">www.php.net</a> 里关于这个预定义变量，有一个提醒</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Warning This feature was DEPRECATED in PHP 5.6.0, and REMOVED as of PHP 7.0.0.</span><br></pre></td></tr></table></figure>
+
+<p>此功能在PHP 5.6.0中已弃用，从PHP 7.0.0开始已删除。</p>
+<p>所以他给出的是使用 <code>php://input</code> 来代替</p>
+</blockquote>
+<p><em>望对你们有用，有什么不对也欢迎大家向我反馈，请多指教</em></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Karl 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/PHP/" rel="tag"># PHP</a>
+          
+            <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/" rel="tag"># 微信公众号</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/16/%E7%BD%91%E9%A1%B5%E7%89%88%E5%BE%AE%E4%BF%A1%E6%8E%A5%E5%8F%A3%E8%B0%83%E7%94%A8%E5%AE%9E%E4%BE%8B/" rel="next" title="网页版微信接口调用实例">
+                <i class="fa fa-chevron-left"></i> 网页版微信接口调用实例
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/28/%E4%BF%AE%E6%94%B9-php-%E4%BB%A3%E7%A0%81%E7%9A%84%E6%97%B6%E5%80%99%E6%80%BB%E6%98%AF%E9%9C%80%E8%A6%81%E7%AD%89%E4%B8%80%E5%88%86%E5%A4%9A%E9%92%9F%E6%89%8D%E8%83%BD%E7%94%9F%E6%95%88%EF%BC%8C%E5%8F%AF%E8%83%BD%E6%98%AF-Zend-OPcache%E7%9A%84%E9%94%85/" rel="prev" title="修改 php 代码的时候总是需要等一分多钟才能生效，可能是 Zend OPcache的锅">
+                修改 php 代码的时候总是需要等一分多钟才能生效，可能是 Zend OPcache的锅 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://blog.51doubiz.com/images/photos.jpg"
+                alt="Karl" />
+            
+              <p class="site-author-name" itemprop="name">Karl</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/zhengkx" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="zhengkx33@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、接入微信公众号平台"><span class="nav-number">1.</span> <span class="nav-text">一、接入微信公众号平台</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、获取-access-token"><span class="nav-number">2.</span> <span class="nav-text">二、获取 access_token</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、对接客服消息"><span class="nav-number">3.</span> <span class="nav-text">三、对接客服消息</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-客服帐号管理"><span class="nav-number">3.1.</span> <span class="nav-text">1. 客服帐号管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-客服发送接口"><span class="nav-number">3.2.</span> <span class="nav-text">2. 客服发送接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-将消息转发到客服"><span class="nav-number">3.3.</span> <span class="nav-text">3. 将消息转发到客服</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、注意"><span class="nav-number">4.</span> <span class="nav-text">四、注意</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Karl</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
