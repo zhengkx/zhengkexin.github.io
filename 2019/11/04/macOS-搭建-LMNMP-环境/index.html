@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="LNMP,mac,PHP,">
+  <meta name="keywords" content="PHP,LNMP,mac,">
 
 
 
@@ -82,14 +82,14 @@
 
 
 <meta name="description" content="使用 brew 命令进行安装 安装 MySql1brew search mysql  搜索一下，看看有什么版本，大家可以根据自己的需要选择版本，我这选择 5.7  1brew install mysql@5.7  静静等待安装，安装完成之后启动服务 1brew services start mysql  根据安装完之后的信息提示 12We&apos;ve installed your MySQL datab">
-<meta name="keywords" content="LNMP,mac,PHP">
+<meta name="keywords" content="PHP,LNMP,mac">
 <meta property="og:type" content="article">
 <meta property="og:title" content="macOS 搭建 LMNMP 环境">
 <meta property="og:url" content="http://yoursite.com/2019/11/04/macOS-搭建-LMNMP-环境/index.html">
 <meta property="og:site_name" content="Karl&#39;s Blog">
 <meta property="og:description" content="使用 brew 命令进行安装 安装 MySql1brew search mysql  搜索一下，看看有什么版本，大家可以根据自己的需要选择版本，我这选择 5.7  1brew install mysql@5.7  静静等待安装，安装完成之后启动服务 1brew services start mysql  根据安装完之后的信息提示 12We&apos;ve installed your MySQL datab">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-04T12:10:14.342Z">
+<meta property="og:updated_time" content="2019-11-05T02:20:07.075Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="macOS 搭建 LMNMP 环境">
 <meta name="twitter:description" content="使用 brew 命令进行安装 安装 MySql1brew search mysql  搜索一下，看看有什么版本，大家可以根据自己的需要选择版本，我这选择 5.7  1brew install mysql@5.7  静静等待安装，安装完成之后启动服务 1brew services start mysql  根据安装完之后的信息提示 12We&apos;ve installed your MySQL datab">
@@ -421,6 +421,26 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_ php-fpm -d</span><br><span class="line">nginx -s reload</span><br></pre></td></tr></table></figure>
 
 <p>就可以开心的玩耍了。</p>
+<h2 id="安装扩展"><a href="#安装扩展" class="headerlink" title="安装扩展"></a>安装扩展</h2><h3 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h3><p>这里可以使用 <code>brew</code> 轻松安装服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew instll redis</span><br></pre></td></tr></table></figure>
+
+<p>接下来就是重点，安装 php 扩展，到 <a href="http://pecl.php.net/package/redis" target="_blank" rel="noopener">http://pecl.php.net/package/redis</a> 选择自己的需要的版本</p>
+<p>下载源码包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://pecl.php.net/get/redis-5.1.0RC2.tgz</span><br></pre></td></tr></table></figure>
+
+<p>解压源码包，进入目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tar -xzvf redis-5.1.tgz</span><br><span class="line"><span class="built_in">cd</span> redis-5.1.0</span><br></pre></td></tr></table></figure>
+
+<p>执行一下 <code>phpize</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// php目录</span><br><span class="line">/usr/<span class="built_in">local</span>/Cellar/php@7.2/7.2.24/bin/phpize</span><br><span class="line">./configure --with-php-config=/usr/<span class="built_in">local</span>/Cellar/php@7.2/7.2.24/bin/php-config</span><br></pre></td></tr></table></figure>
+
+<p>编译安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+
+<p>修改 php.ini 配置。在 <code>/usr/local/etc/php/7.2/php.ini</code> 文件中添加</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">extension=redis.so</span><br></pre></td></tr></table></figure>
+
+<p>重启 <code>php-fpm</code> 就可以看到 <code>redis</code> 扩展了</p>
 <h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><p>访问时，网页一直显示 502 </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[error] 38689<span class="comment">#0: *6 kevent() reported that connect() failed (61: Connection refused) while connecting to upstream, client: 127.0.0.1, server: blog.me, request: "GET / HTTP/1.1", upstream: "fastcgi://127.0.0.1:9000", host: "blog.me"</span></span><br></pre></td></tr></table></figure>
 
@@ -467,11 +487,11 @@
       
         <div class="post-tags">
           
+            <a href="/tags/PHP/" rel="tag"># PHP</a>
+          
             <a href="/tags/LNMP/" rel="tag"># LNMP</a>
           
             <a href="/tags/mac/" rel="tag"># mac</a>
-          
-            <a href="/tags/PHP/" rel="tag"># PHP</a>
           
         </div>
       
@@ -649,7 +669,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-MySql"><span class="nav-number">1.</span> <span class="nav-text">安装 MySql</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-Nginx"><span class="nav-number">2.</span> <span class="nav-text">安装 Nginx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-PHP"><span class="nav-number">3.</span> <span class="nav-text">安装 PHP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置-PHP-和-Nginx"><span class="nav-number">4.</span> <span class="nav-text">配置 PHP 和 Nginx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#遇到的问题"><span class="nav-number">5.</span> <span class="nav-text">遇到的问题</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-MySql"><span class="nav-number">1.</span> <span class="nav-text">安装 MySql</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-Nginx"><span class="nav-number">2.</span> <span class="nav-text">安装 Nginx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-PHP"><span class="nav-number">3.</span> <span class="nav-text">安装 PHP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置-PHP-和-Nginx"><span class="nav-number">4.</span> <span class="nav-text">配置 PHP 和 Nginx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装扩展"><span class="nav-number">5.</span> <span class="nav-text">安装扩展</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#redis"><span class="nav-number">5.1.</span> <span class="nav-text">redis</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#遇到的问题"><span class="nav-number">6.</span> <span class="nav-text">遇到的问题</span></a></li></ol></div>
             
 
           </div>

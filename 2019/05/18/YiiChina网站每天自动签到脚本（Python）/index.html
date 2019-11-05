@@ -371,7 +371,7 @@
 <p>都说是<strong>自动</strong>，那肯定就不止这个脚本的。</p>
 <p>这里使用 Linux 的<strong>定时任务</strong>，不清楚的先直接  google 一下</p>
 <p>使用 <code>crontab -e</code> 进入编辑模式，把下面的命令添加到里面去</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 每天早上九点自动签到 yii</span></span><br><span class="line">0 9 * * * /usr/bin/python3.6 ~/yii_sign.py &gt; /dev/null 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 每天早上九点自动签到 yii</span><br><span class="line">0 9 * * * /usr/bin/python3.6 ~/yii_sign.py &gt; /dev/null 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>要使用自己相对应的路径</p>
