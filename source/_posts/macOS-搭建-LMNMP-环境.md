@@ -175,6 +175,57 @@ nginx -s reload
 
 
 
+## 安装扩展
+
+### redis
+
+这里可以使用 `brew` 轻松安装服务
+
+```bash
+brew instll redis
+```
+
+接下来就是重点，安装 php 扩展，到 [http://pecl.php.net/package/redis](http://pecl.php.net/package/redis) 选择自己的需要的版本
+
+下载源码包
+
+```bash
+wget http://pecl.php.net/get/redis-5.1.0RC2.tgz
+```
+
+解压源码包，进入目录
+
+```bash
+tar -xzvf redis-5.1.tgz
+cd redis-5.1.0
+```
+
+执行一下 `phpize`
+
+```bash
+// php目录
+/usr/local/Cellar/php@7.2/7.2.24/bin/phpize
+./configure --with-php-config=/usr/local/Cellar/php@7.2/7.2.24/bin/php-config
+```
+
+编译安装
+
+```bash
+make && make install
+```
+
+修改 php.ini 配置。在 `/usr/local/etc/php/7.2/php.ini` 文件中添加
+
+```bash
+extension=redis.so
+```
+
+重启 `php-fpm` 就可以看到 `redis` 扩展了
+
+
+
+
+
 ## 遇到的问题
 
 访问时，网页一直显示 502 

@@ -87,3 +87,10 @@ deploy:
 # - tyoe: git
 #   repo: git@git.dev.tencent.com:doubiz/doubiz.git
 #   branch: master
+
+leancloud_counter_security:
+  enable_sync: true
+  app_id: j4bno56f9vWFMFHHr1Al7LfL-gzGzoHsz
+  app_key: Yjx3MEJCyj2AfUQrhdCuG8AF
+  username: 1113776415@qq.com # Will be asked while deploying if is left blank
+  password: Zkx123321 # Recommmended to be left blank. Will be asked while deploying if is left blank
