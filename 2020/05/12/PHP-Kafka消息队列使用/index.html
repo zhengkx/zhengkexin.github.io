@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="PHP,消息队列 - Kafka,">
 
 
 
@@ -81,17 +81,18 @@
 
 
 
-<meta name="description" content="好好管教自己，不要管别人。">
-<meta name="keywords" content="郑可鑫的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Karl&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/archives/2019/05/index.html">
+<meta name="description" content="PHP Kafka消息队列使用1. 安装 Kafka 服务直接到 kafka官网 , 下载最新的 1wget https://mirror.bit.edu.cn/apache/kafka/2.5.0/kafka_2.13-2.5.0.tgz  解压，进入目录 12tar -zxvf kafka_2.13-2.5.0.tgzcd kafka_2.13-2.5.0  开始使用 a. 启动 Kafka">
+<meta name="keywords" content="PHP,消息队列 - Kafka">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP Kafka消息队列使用">
+<meta property="og:url" content="http://yoursite.com/2020/05/12/PHP-Kafka消息队列使用/index.html">
 <meta property="og:site_name" content="Karl&#39;s Blog">
-<meta property="og:description" content="好好管教自己，不要管别人。">
+<meta property="og:description" content="PHP Kafka消息队列使用1. 安装 Kafka 服务直接到 kafka官网 , 下载最新的 1wget https://mirror.bit.edu.cn/apache/kafka/2.5.0/kafka_2.13-2.5.0.tgz  解压，进入目录 12tar -zxvf kafka_2.13-2.5.0.tgzcd kafka_2.13-2.5.0  开始使用 a. 启动 Kafka">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-05-12T15:09:40.717Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Karl&#39;s Blog">
-<meta name="twitter:description" content="好好管教自己，不要管别人。">
+<meta name="twitter:title" content="PHP Kafka消息队列使用">
+<meta name="twitter:description" content="PHP Kafka消息队列使用1. 安装 Kafka 服务直接到 kafka官网 , 下载最新的 1wget https://mirror.bit.edu.cn/apache/kafka/2.5.0/kafka_2.13-2.5.0.tgz  解压，进入目录 12tar -zxvf kafka_2.13-2.5.0.tgzcd kafka_2.13-2.5.0  开始使用 a. 启动 Kafka">
 
 
 
@@ -121,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2019/05/">
+  <link rel="canonical" href="http://yoursite.com/2020/05/12/PHP-Kafka消息队列使用/">
 
 
 
 
 
-  <title>归档 | Karl's Blog</title>
+  <title>PHP Kafka消息队列使用 | Karl's Blog</title>
   
 
 
@@ -156,7 +157,7 @@
     
   
 
-  <div class="container sidebar-position-right page-archive">
+  <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -282,107 +283,253 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
-
-      <span class="archive-page-counter">
-        
-        
-        
-          
-        
-        嗯..! 目前共计 13 篇日志。 继续努力。
-      </span>
-
-      
-
-        
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
-
-        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/12/PHP-Kafka消息队列使用/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Karl">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="http://blog.51doubiz.com/images/photos.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Karl's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/05/18/YiiChina网站每天自动签到脚本（Python）/" itemprop="url">
-              
-                <span itemprop="name">YiiChina网站每天自动签到脚本（Python）</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">PHP Kafka消息队列使用</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-05-18T09:09:41+08:00" content="2019-05-18">
-          05-18
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-12T23:07:24+08:00">
+                2020-05-12
+              </time>
+            
 
-    </header>
-  </article>
+            
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-05-12T23:09:40+08:00">
+                2020-05-12
+              </time>
+            
+          </span>
 
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/05/12/PHP-Kafka消息队列使用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/05/12/PHP-Kafka消息队列使用/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/05/12/PHP-Kafka消息队列使用/" class="leancloud_visitors" data-flag-title="PHP Kafka消息队列使用">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/05/15/window-navicat连接远程服务器数据库/" itemprop="url">
-              
-                <span itemprop="name">window_navicat连接远程服务器数据库</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-05-15T10:09:44+08:00" content="2019-05-15">
-          05-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
+      
+        <h2 id="PHP-Kafka消息队列使用"><a href="#PHP-Kafka消息队列使用" class="headerlink" title="PHP Kafka消息队列使用"></a>PHP Kafka消息队列使用</h2><h3 id="1-安装-Kafka-服务"><a href="#1-安装-Kafka-服务" class="headerlink" title="1. 安装 Kafka 服务"></a>1. 安装 Kafka 服务</h3><p>直接到 <a href="https://kafka.apache.org/downloads" target="_blank" rel="noopener">kafka官网</a> , 下载最新的</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://mirror.bit.edu.cn/apache/kafka/2.5.0/kafka_2.13-2.5.0.tgz</span><br></pre></td></tr></table></figure>
+
+<p>解压，进入目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf kafka_2.13-2.5.0.tgz</span><br><span class="line">cd kafka_2.13-2.5.0</span><br></pre></td></tr></table></figure>
+
+<p>开始使用</p>
+<h4 id="a-启动-Kafka-服务"><a href="#a-启动-Kafka-服务" class="headerlink" title="a. 启动 Kafka 服务"></a>a. 启动 Kafka 服务</h4><p>使用安装包中的脚本启动单节点 Zookeeper 实例</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/zookeeper-server-start.sh -daemon config/zookeeper.properties</span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>kafka-server-start.sh</code> 启动 kafka 服务</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-server-start.sh config/server.properties</span><br></pre></td></tr></table></figure>
+
+<p>创建 <code>topic</code> </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test</span><br></pre></td></tr></table></figure>
+
+<p>查看 <code>topic</code> 列表，检查是否创建成功</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-topics.sh --list --zookeeper localhost:2181</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span> test</span><br></pre></td></tr></table></figure>
+
+<p>生产者，发送消息</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-console-producer.sh --broker-list 127.0.0.1:9092 --topic test</span><br></pre></td></tr></table></figure>
+
+<p>服务方面到这里就差不多了，接下来就是php的事了。</p>
+<h3 id="2-安装-PHP-扩展"><a href="#2-安装-PHP-扩展" class="headerlink" title="2. 安装 PHP 扩展"></a>2. 安装 PHP 扩展</h3><p><code>rdkafka</code> 安装需要依赖 <code>librdkafka</code> , 所以先安装 <code>librdkafka</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/edenhill/librdkafka.git</span><br><span class="line">cd librdkafka</span><br><span class="line">./configure</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+
+<p>安装php-rdkafka扩展</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/arnaud-lb/php-rdkafka.git</span><br><span class="line">cd php-rdkafka</span><br><span class="line">phpize</span><br><span class="line">./configure --with-php-config=/usr/local/Cellar/php@7.2/7.2.24/bin/php-config  ## 这里根据自己的情况填写路径</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>php-ini</code> 加上</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">extension=rdkafka.so</span><br></pre></td></tr></table></figure>
+
+<p>重启，php-fpm，就应该可以看到该扩展。</p>
+<h3 id="3-使用"><a href="#3-使用" class="headerlink" title="3. 使用"></a>3. 使用</h3><p>创建一个生产者类</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">KafkaProducer</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> $brokerList = <span class="string">'127.0.0.1:9092'</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">send</span><span class="params">($message, $topic)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">self</span>::producer($message, $topic);</span><br><span class="line">    &#125;</span><br><span class="line">		</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">producer</span><span class="params">($message, $topic = <span class="string">'test'</span>)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $conf = <span class="keyword">new</span> \RdKafka\Conf();</span><br><span class="line"></span><br><span class="line">        $conf-&gt;set(<span class="string">'metadata.broker.list'</span>, <span class="keyword">self</span>::$brokerList);</span><br><span class="line"></span><br><span class="line">        $producer = <span class="keyword">new</span> \RdKafka\Producer($conf);</span><br><span class="line"></span><br><span class="line">        $topic = $producer-&gt;newTopic($topic);</span><br><span class="line"></span><br><span class="line">        $topic-&gt;produce(RD_KAFKA_PARTITION_UA, <span class="number">0</span>, json_encode($message));</span><br><span class="line"></span><br><span class="line">        $producer-&gt;poll(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">        $result = $producer-&gt;flush(<span class="number">10000</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (RD_KAFKA_RESP_ERR_NO_ERROR !== $result) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> \RuntimeException(<span class="string">'Was unable to flush, messages might be lost!'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>创建一个消费类</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">KafkaConsumer</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> $brokerList = <span class="string">'127.0.0.1:9092'</span>;</span><br><span class="line"></span><br><span class="line">  	<span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">consumer</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $conf = <span class="keyword">new</span> \RdKafka\Conf();</span><br><span class="line"></span><br><span class="line">        $conf-&gt;set(<span class="string">'group.id'</span>, <span class="string">'test'</span>);</span><br><span class="line"></span><br><span class="line">        $rk = <span class="keyword">new</span> \RdKafka\Consumer($conf);</span><br><span class="line">        </span><br><span class="line">        $rk-&gt;addBrokers(<span class="string">"127.0.0.1"</span>);</span><br><span class="line"></span><br><span class="line">        $topicConf = <span class="keyword">new</span> \RdKafka\TopicConf();</span><br><span class="line"></span><br><span class="line">        $topicConf-&gt;set(<span class="string">'auto.commit.interval.ms'</span>, <span class="number">100</span>);</span><br><span class="line"></span><br><span class="line">        $topicConf-&gt;set(<span class="string">'offset.store.method'</span>, <span class="string">'broker'</span>);</span><br><span class="line"></span><br><span class="line">        $topicConf-&gt;set(<span class="string">'auto.offset.reset'</span>, <span class="string">'smallest'</span>);</span><br><span class="line"></span><br><span class="line">        $topic = $rk-&gt;newTopic(<span class="string">'test'</span>, $topicConf);</span><br><span class="line"></span><br><span class="line">        $topic-&gt;consumeStart(<span class="number">0</span>, RD_KAFKA_OFFSET_STORED);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">            $message = $topic-&gt;consume(<span class="number">0</span>, <span class="number">120</span>*<span class="number">10000</span>);</span><br><span class="line">            <span class="keyword">switch</span> ($message-&gt;err) &#123;</span><br><span class="line">                <span class="keyword">case</span> RD_KAFKA_RESP_ERR_NO_ERROR:</span><br><span class="line">                    var_dump($message);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> RD_KAFKA_RESP_ERR__PARTITION_EOF:</span><br><span class="line">                    <span class="keyword">echo</span> <span class="string">"No more messages; will wait for more\n"</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> RD_KAFKA_RESP_ERR__TIMED_OUT:</span><br><span class="line">                    <span class="keyword">echo</span> <span class="string">"Timed out\n"</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">default</span>:</span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> \<span class="keyword">Exception</span>($message-&gt;errstr(), $message-&gt;err);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="问题汇总"><a href="#问题汇总" class="headerlink" title="问题汇总"></a>问题汇总</h3><p><strong>a. No Java runtime present, requesting install</strong></p>
+<p>因为 kafka 需要 java 环境支持，所以安装 java 环境。可以到 <a href="https://www.oracle.com/java/technologies/javase-jdk14-downloads.html" target="_blank" rel="noopener">javase-jdk14-downloads</a> 选择自己的版本进行下载安装</p>
+<p><strong>b. 创建 topic 出现：Replication factor: 1 larger than available brokers: 0</strong></p>
+<p>意思是至少有一个brokers.也就是说并没有有效的brokers可以用。你要确保你的kafka已经启动了</p>
+<p><em>参考</em></p>
+<p><em><a href="https://www.jianshu.com/p/964bdfeb9465" target="_blank" rel="noopener">https://www.jianshu.com/p/964bdfeb9465</a></em></p>
+
+      
     </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Karl 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/PHP/" rel="tag"># PHP</a>
+          
+            <a href="/tags/消息队列-Kafka/" rel="tag"># 消息队列 - Kafka</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/30/Nginx-配置-Vue-项目解决跨域问题/" rel="next" title="Nginx 配置 Vue 项目解决跨域问题">
+                <i class="fa fa-chevron-left"></i> Nginx 配置 Vue 项目解决跨域问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -390,6 +537,20 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -410,8 +571,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -502,6 +672,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP-Kafka消息队列使用"><span class="nav-number">1.</span> <span class="nav-text">PHP Kafka消息队列使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-安装-Kafka-服务"><span class="nav-number">1.1.</span> <span class="nav-text">1. 安装 Kafka 服务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#a-启动-Kafka-服务"><span class="nav-number">1.1.1.</span> <span class="nav-text">a. 启动 Kafka 服务</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-安装-PHP-扩展"><span class="nav-number">1.2.</span> <span class="nav-text">2. 安装 PHP 扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-使用"><span class="nav-number">1.3.</span> <span class="nav-text">3. 使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题汇总"><span class="nav-number">1.4.</span> <span class="nav-text">问题汇总</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -645,6 +831,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -662,6 +852,18 @@
       <script id="dsq-count-scr" src="https://ZhengKX.disqus.com/count.js" async></script>
     
 
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2020/05/12/PHP-Kafka消息队列使用/';
+          this.page.identifier = '2020/05/12/PHP-Kafka消息队列使用/';
+          this.page.title = 'PHP Kafka消息队列使用';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://ZhengKX.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
     
 
   

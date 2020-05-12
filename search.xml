@@ -1,6 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>PHP Kafka消息队列使用</title>
+    <url>/2020/05/12/PHP-Kafka%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h2 id="PHP-Kafka消息队列使用"><a href="#PHP-Kafka消息队列使用" class="headerlink" title="PHP Kafka消息队列使用"></a>PHP Kafka消息队列使用</h2><h3 id="1-安装-Kafka-服务"><a href="#1-安装-Kafka-服务" class="headerlink" title="1. 安装 Kafka 服务"></a>1. 安装 Kafka 服务</h3><p>直接到 <a href="https://kafka.apache.org/downloads" target="_blank" rel="noopener">kafka官网</a> , 下载最新的</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">wget https://mirror.bit.edu.cn/apache/kafka/2.5.0/kafka_2.13-2.5.0.tgz</span><br></pre></td></tr></table></figure>
+
+<p>解压，进入目录</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">tar -zxvf kafka_2.13-2.5.0.tgz</span><br><span class="line">cd kafka_2.13-2.5.0</span><br></pre></td></tr></table></figure>
+
+<p>开始使用</p>
+<h4 id="a-启动-Kafka-服务"><a href="#a-启动-Kafka-服务" class="headerlink" title="a. 启动 Kafka 服务"></a>a. 启动 Kafka 服务</h4><p>使用安装包中的脚本启动单节点 Zookeeper 实例</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">bin/zookeeper-server-start.sh -daemon config/zookeeper.properties</span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>kafka-server-start.sh</code> 启动 kafka 服务</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">bin/kafka-server-start.sh config/server.properties</span><br></pre></td></tr></table></figure>
+
+<p>创建 <code>topic</code> </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test</span><br></pre></td></tr></table></figure>
+
+<p>查看 <code>topic</code> 列表，检查是否创建成功</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">bin/kafka-topics.sh --list --zookeeper localhost:2181</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span> test</span><br></pre></td></tr></table></figure>
+
+<p>生产者，发送消息</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">bin/kafka-console-producer.sh --broker-list 127.0.0.1:9092 --topic test</span><br></pre></td></tr></table></figure>
+
+<p>服务方面到这里就差不多了，接下来就是php的事了。</p>
+<h3 id="2-安装-PHP-扩展"><a href="#2-安装-PHP-扩展" class="headerlink" title="2. 安装 PHP 扩展"></a>2. 安装 PHP 扩展</h3><p><code>rdkafka</code> 安装需要依赖 <code>librdkafka</code> , 所以先安装 <code>librdkafka</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/edenhill/librdkafka.git</span><br><span class="line">cd librdkafka</span><br><span class="line">./configure</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+
+<p>安装php-rdkafka扩展</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/arnaud-lb/php-rdkafka.git</span><br><span class="line">cd php-rdkafka</span><br><span class="line">phpize</span><br><span class="line">./configure --with-php-config=/usr/local/Cellar/php@7.2/7.2.24/bin/php-config  ## 这里根据自己的情况填写路径</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>php-ini</code> 加上</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">extension=rdkafka.so</span><br></pre></td></tr></table></figure>
+
+<p>重启，php-fpm，就应该可以看到该扩展。</p>
+<h3 id="3-使用"><a href="#3-使用" class="headerlink" title="3. 使用"></a>3. 使用</h3><p>创建一个生产者类</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">KafkaProducer</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> $brokerList = <span class="string">'127.0.0.1:9092'</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">send</span><span class="params">($message, $topic)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">self</span>::producer($message, $topic);</span><br><span class="line">    &#125;</span><br><span class="line">		</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">producer</span><span class="params">($message, $topic = <span class="string">'test'</span>)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $conf = <span class="keyword">new</span> \RdKafka\Conf();</span><br><span class="line"></span><br><span class="line">        $conf-&gt;set(<span class="string">'metadata.broker.list'</span>, <span class="keyword">self</span>::$brokerList);</span><br><span class="line"></span><br><span class="line">        $producer = <span class="keyword">new</span> \RdKafka\Producer($conf);</span><br><span class="line"></span><br><span class="line">        $topic = $producer-&gt;newTopic($topic);</span><br><span class="line"></span><br><span class="line">        $topic-&gt;produce(RD_KAFKA_PARTITION_UA, <span class="number">0</span>, json_encode($message));</span><br><span class="line"></span><br><span class="line">        $producer-&gt;poll(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">        $result = $producer-&gt;flush(<span class="number">10000</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (RD_KAFKA_RESP_ERR_NO_ERROR !== $result) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> \RuntimeException(<span class="string">'Was unable to flush, messages might be lost!'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>创建一个消费类</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">KafkaConsumer</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> $brokerList = <span class="string">'127.0.0.1:9092'</span>;</span><br><span class="line"></span><br><span class="line">  	<span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">consumer</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $conf = <span class="keyword">new</span> \RdKafka\Conf();</span><br><span class="line"></span><br><span class="line">        $conf-&gt;set(<span class="string">'group.id'</span>, <span class="string">'test'</span>);</span><br><span class="line"></span><br><span class="line">        $rk = <span class="keyword">new</span> \RdKafka\Consumer($conf);</span><br><span class="line">        </span><br><span class="line">        $rk-&gt;addBrokers(<span class="string">"127.0.0.1"</span>);</span><br><span class="line"></span><br><span class="line">        $topicConf = <span class="keyword">new</span> \RdKafka\TopicConf();</span><br><span class="line"></span><br><span class="line">        $topicConf-&gt;set(<span class="string">'auto.commit.interval.ms'</span>, <span class="number">100</span>);</span><br><span class="line"></span><br><span class="line">        $topicConf-&gt;set(<span class="string">'offset.store.method'</span>, <span class="string">'broker'</span>);</span><br><span class="line"></span><br><span class="line">        $topicConf-&gt;set(<span class="string">'auto.offset.reset'</span>, <span class="string">'smallest'</span>);</span><br><span class="line"></span><br><span class="line">        $topic = $rk-&gt;newTopic(<span class="string">'test'</span>, $topicConf);</span><br><span class="line"></span><br><span class="line">        $topic-&gt;consumeStart(<span class="number">0</span>, RD_KAFKA_OFFSET_STORED);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">            $message = $topic-&gt;consume(<span class="number">0</span>, <span class="number">120</span>*<span class="number">10000</span>);</span><br><span class="line">            <span class="keyword">switch</span> ($message-&gt;err) &#123;</span><br><span class="line">                <span class="keyword">case</span> RD_KAFKA_RESP_ERR_NO_ERROR:</span><br><span class="line">                    var_dump($message);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> RD_KAFKA_RESP_ERR__PARTITION_EOF:</span><br><span class="line">                    <span class="keyword">echo</span> <span class="string">"No more messages; will wait for more\n"</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> RD_KAFKA_RESP_ERR__TIMED_OUT:</span><br><span class="line">                    <span class="keyword">echo</span> <span class="string">"Timed out\n"</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">default</span>:</span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> \<span class="keyword">Exception</span>($message-&gt;errstr(), $message-&gt;err);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="问题汇总"><a href="#问题汇总" class="headerlink" title="问题汇总"></a>问题汇总</h3><p><strong>a. No Java runtime present, requesting install</strong></p>
+<p>因为 kafka 需要 java 环境支持，所以安装 java 环境。可以到 <a href="https://www.oracle.com/java/technologies/javase-jdk14-downloads.html" target="_blank" rel="noopener">javase-jdk14-downloads</a> 选择自己的版本进行下载安装</p>
+<p><strong>b. 创建 topic 出现：Replication factor: 1 larger than available brokers: 0</strong></p>
+<p>意思是至少有一个brokers.也就是说并没有有效的brokers可以用。你要确保你的kafka已经启动了</p>
+<p><em>参考</em></p>
+<p><em><a href="https://www.jianshu.com/p/964bdfeb9465" target="_blank" rel="noopener">https://www.jianshu.com/p/964bdfeb9465</a></em></p>
+]]></content>
+      <tags>
+        <tag>PHP</tag>
+        <tag>消息队列 - Kafka</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Nginx 配置 Vue 项目解决跨域问题</title>
     <url>/2020/04/30/Nginx-%E9%85%8D%E7%BD%AE-Vue-%E9%A1%B9%E7%9B%AE%E8%A7%A3%E5%86%B3%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<p><strong>例行交代背景</strong> 终于来了一个h5前端了。自己不用再去搞页面。因为前端是用 Vue 开发的，所以就会出现一个跨域的问题。</p>
@@ -23,96 +80,6 @@
       <tags>
         <tag>Nginx</tag>
         <tag>跨域</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>第一次总结</title>
-    <url>/2019/12/30/%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<blockquote>
-<p>不知不觉，2020年就要到了，十分不如意的本命年终于要结束（真的好惨的一年</p>
-<p>总的来说，今年经历的也很多，也是最不稳定的一年</p>
-</blockquote>
-<p><strong>现在先复盘一下</strong></p>
-<ul>
-<li><p>2月</p>
-<ul>
-<li>从老家过完年回来，辞了工作</li>
-</ul>
-</li>
-<li><p>3月</p>
-<ul>
-<li>从广州出发到了荆门，第一次出省</li>
-<li>月底入职新公司</li>
-</ul>
-</li>
-<li><p>4月</p>
-<ul>
-<li>整理起自己的博客</li>
-<li>上手公司系统，使用 Yii。跟一群云同事开始相互合作</li>
-</ul>
-</li>
-<li><p>5月</p>
-<ul>
-<li>接触了小程序和公众号的开发</li>
-</ul>
-</li>
-<li><p>6月</p>
-</li>
-<li><p>7月</p>
-</li>
-<li><p>8月</p>
-</li>
-<li><p>9月</p>
-<ul>
-<li>经历公司的经济性裁员</li>
-</ul>
-</li>
-<li><p>10月</p>
-<ul>
-<li>入职一家游戏公司</li>
-</ul>
-</li>
-<li><p>11月</p>
-</li>
-<li><p>12月</p>
-</li>
-</ul>
-<h3 id="首先对2019年的整体复盘"><a href="#首先对2019年的整体复盘" class="headerlink" title="首先对2019年的整体复盘"></a>首先对2019年的整体复盘</h3><h3 id="2019年，有什么没有做好的"><a href="#2019年，有什么没有做好的" class="headerlink" title="2019年，有什么没有做好的"></a>2019年，有什么没有做好的</h3><h3 id="2020年，计划怎么做"><a href="#2020年，计划怎么做" class="headerlink" title="2020年，计划怎么做"></a>2020年，计划怎么做</h3>]]></content>
-      <categories>
-        <category>随记</category>
-      </categories>
-      <tags>
-        <tag>年终总结</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>接入支付宝支付</title>
-    <url>/2019/12/05/%E6%8E%A5%E5%85%A5%E6%94%AF%E4%BB%98%E5%AE%9D%E6%94%AF%E4%BB%98/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>PHP</category>
-      </categories>
-      <tags>
-        <tag>PHP</tag>
-        <tag>支付</tag>
-        <tag>第三方</tag>
-        <tag>SDK</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>浅谈 nginx 与 php-fpm</title>
-    <url>/2019/11/21/%E6%B5%85%E8%B0%88-nginx-%E4%B8%8E-php-fpm/</url>
-    <content><![CDATA[<p>先了解一下他们是什么东西</p>
-<p><strong>ngxin：</strong> 是一个高性能的 HTTP 和反向代理 web 服务器，同时也提供了 IMAP/POP3/SMTP 服务。</p>
-<p><strong>php-fpm：</strong> （FastCGI Process Manager）FastCGI 进程管理器。</p>
-<p>那引申出来这个 FastCGI 是什么东西呢？他的前身是 CGI（通用网关接口），他现在是“更快的通用网关接口”</p>
-]]></content>
-      <categories>
-        <category>PHP</category>
-      </categories>
-      <tags>
-        <tag>PHP</tag>
-        <tag>Nginx</tag>
       </tags>
   </entry>
   <entry>
@@ -285,8 +252,8 @@
 <p><strong><em>不对之处，请多指教</em></strong></p>
 ]]></content>
       <tags>
-        <tag>Laravel</tag>
         <tag>PHP</tag>
+        <tag>Laravel</tag>
       </tags>
   </entry>
   <entry>
